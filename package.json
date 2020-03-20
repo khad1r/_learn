@@ -1,0 +1,22 @@
+{
+  "name": "learn",
+  "version": "1.0.0",
+  "description": "bealjar web",
+  "main": "index.js",
+  "scripts": {
+    "test": "testrun"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khad1r/_learn.git"
+  },
+  "keywords": [
+    "learn"
+  ],
+  "author": "kadir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khad1r/_learn/issues"
+  },
+  "homepage": "https://github.com/khad1r/_learn#readme"
+}
