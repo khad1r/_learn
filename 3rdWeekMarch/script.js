@@ -31,10 +31,9 @@ document.querySelector(".search").addEventListener("click", (e) => {
 });
 
 function renderMultiple(post) {
-    path = post.graphql.shortcode_media;
-    html = renderFeed(path);
+    html = '';
     path = post.graphql.shortcode_media.edge_sidecar_to_children.edges;
-    for (var i = 1; i < path.length; i++) {
+    for (var i = 0; i < path.length; i++) {
         pathChild = path[i].node;
         html += renderFeed(pathChild);
     }
@@ -52,15 +51,15 @@ function renderFeed(path) {
     console.log(path);
     html = "";
     if (path.is_video) {
-        html = '<div class="feed fade">\n<video class="feedIg" controls><source id="datauri" src="' + path.video_url + '" type="video/mp4"></video>\n</div>\n';
+        html = '<div class="feed fade">\n<video class="feedIg" controls preload="none" poster="' + path.display_url + '"><source id="datauri" src="' + path.video_url + '" type="video/mp4"></video>\n</div>\n';
     } else {
-        html = '<div class="feed fade">\n<img class="feedIg" id="datauri" src="' + path.display_url + '">\n</div>\n';
+        html = '<div class="feed fade">\n<img class="feedIg" loading="lazy" src="' + path.display_url + '">\n</div>\n';
     }
     return html;
 }
 
 function renderHtml(html) {
-    html += '<a class="btn" id="download" href="" download="">Download</a>'
+    html += '<span class="text">Right Click or Long Press to download</span>'
     scrape = document.querySelector(".scrape");
     scrape.innerHTML = html;
     scrape.style.display = "block";
@@ -88,12 +87,4 @@ function showSlides(n) {
         slides[i].className = slides[i].className.replace(" active", "");
     }
     slides[slideIndex - 1].style.display = "block";
-    download(slides[slideIndex - 1]);
-}
-
-function download(files) {
-    src = files.querySelector('#datauri').getAttribute('src');
-    console.log(src);
-    document.querySelector('#download').setAttribute('href', src);
-    document.querySelector('#download').setAttribute('download', src);
 }
