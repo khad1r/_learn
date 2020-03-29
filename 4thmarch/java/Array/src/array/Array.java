@@ -12,6 +12,7 @@ public class Array {
     public static void main(String[] args) {
         array = new ArrayList<String[]>();
         input = new Scanner(System.in);
+        System.out.println("190602057 Abdul Kadir Jaelani")
 
         while (true) {
             mainMenu();
